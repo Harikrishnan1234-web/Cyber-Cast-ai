@@ -317,7 +317,7 @@ cyber cast ai/
 ├── cybercast_vault.db               SQLite tamper-evident case workspace & evidence vault
 ├── docs/
 │   └── images/
-│       └── logo.svg                 CyberCast AI vector emblem
+│       └── logo.png                 CyberCast AI emblem
 ├── src/
 │   ├── config.py                    State dimensions (27-D), constants, and playbooks
 │   ├── api/
