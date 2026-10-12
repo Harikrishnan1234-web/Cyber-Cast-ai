@@ -1,318 +1,158 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 780" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" width="100%" height="100%">
   <defs>
-    <!-- Background Gradients -->
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#070b14"/>
-      <stop offset="50%" stop-color="#0d1527"/>
-      <stop offset="100%" stop-color="#0a101d"/>
-    </linearGradient>
-
-    <!-- Card Gradients -->
-    <linearGradient id="cardGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#111c35" stop-opacity="0.9"/>
-      <stop offset="100%" stop-color="#0a1224" stop-opacity="0.9"/>
-    </linearGradient>
-    <linearGradient id="cardGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#14213d" stop-opacity="0.9"/>
-      <stop offset="100%" stop-color="#0c172e" stop-opacity="0.9"/>
-    </linearGradient>
-    <linearGradient id="aiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1e1b4b" stop-opacity="0.95"/>
-      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.95"/>
-    </linearGradient>
-    <linearGradient id="actionGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#064e3b" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#022c22" stop-opacity="0.9"/>
-    </linearGradient>
-
-    <!-- Glow & Border Filters -->
-    <filter id="cyanGlow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="5" result="blur"/>
-      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
-    </filter>
-    <filter id="purpleGlow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="6" result="blur"/>
-      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
-    </filter>
-    <filter id="greenGlow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="5" result="blur"/>
-      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
-    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#475569"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#059669"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#6366f1"/>
+    </marker>
   </defs>
 
-  <!-- Canvas Background -->
-  <rect width="1200" height="780" fill="url(#bgGrad)"/>
-  <rect width="1200" height="780" fill="none" stroke="#1e293b" stroke-width="2"/>
+  <!-- Clean Canvas Background -->
+  <rect width="1200" height="520" fill="#ffffff" rx="8"/>
 
-  <!-- Top Title Banner -->
-  <g transform="translate(60, 25)">
-    <text x="540" y="32" font-family="'Segoe UI', Inter, sans-serif" font-size="26" font-weight="bold" fill="#f8fafc" text-anchor="middle" letter-spacing="1">
-      CYBERCAST AI: END-TO-END SYSTEM ARCHITECTURE
-    </text>
-    <text x="540" y="54" font-family="'Segoe UI', Inter, sans-serif" font-size="13" font-weight="normal" fill="#94a3b8" text-anchor="middle">
-      Neural World Model for Proactive Network Attack Forecasting &amp; Counterfactual Defense · NTRO SIH26153
-    </text>
+  <!-- ==================== COLUMN 1: INPUT TELEMETRY (BLUE) ==================== -->
+  <!-- Box 1: Flow records -->
+  <g transform="translate(20, 60)">
+    <rect width="180" height="150" rx="10" fill="#f0f9ff" stroke="#0284c7" stroke-width="2.5"/>
+    <text x="90" y="38" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="16" font-weight="bold" fill="#0f172a" text-anchor="middle">Flow records</text>
+    <text x="90" y="68" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="12" fill="#475569" text-anchor="middle">CTU-13, CIC-IDS2017/18,</text>
+    <text x="90" y="88" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="12" fill="#475569" text-anchor="middle">UNSW-NB15, Zeek conn.log</text>
+    <text x="90" y="108" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">(format auto-detected)</text>
   </g>
 
-  <!-- SECTION 1: INGESTION TIER -->
-  <g transform="translate(50, 100)">
-    <!-- Container -->
-    <rect width="250" height="630" rx="12" fill="url(#cardGrad1)" stroke="#0284c7" stroke-width="2"/>
-    <rect width="250" height="36" rx="12" fill="#0369a1" fill-opacity="0.4"/>
-    <text x="125" y="24" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="bold" fill="#38bdf8" text-anchor="middle">
-      1 · TELEMETRY INGESTION
-    </text>
-
-    <!-- Sub-Box 1: Flow Records -->
-    <g transform="translate(15, 55)">
-      <rect width="220" height="85" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
-      <text x="15" y="22" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#38bdf8">NetFlow / IPFIX / CSV</text>
-      <text x="15" y="42" font-family="'Segoe UI', sans-serif" font-size="11" fill="#cbd5e1">• CIC-IDS-2018 / CTU-13 / UNSW</text>
-      <text x="15" y="58" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94a3b8">• 5-Tuples, IAT mean/var/max</text>
-      <text x="15" y="74" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94a3b8">• Byte &amp; Packet Asymmetry Ratios</text>
-    </g>
-
-    <!-- Sub-Box 2: Deep PCAP DPI -->
-    <g transform="translate(15, 155)">
-      <rect width="220" height="85" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
-      <text x="15" y="22" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#38bdf8">Deep Packet Inspection</text>
-      <text x="15" y="42" font-family="'Segoe UI', sans-serif" font-size="11" fill="#cbd5e1">• Scapy PCAP Header Analyzer</text>
-      <text x="15" y="58" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94a3b8">• TTL Variance &amp; TCP Window</text>
-      <text x="15" y="74" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94a3b8">• IP Fragmentation &amp; Port Entropy</text>
-    </g>
-
-    <!-- Sub-Box 3: Zeek & Suricata -->
-    <g transform="translate(15, 255)">
-      <rect width="220" height="85" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
-      <text x="15" y="22" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#38bdf8">NIDS Log Parsers</text>
-      <text x="15" y="42" font-family="'Segoe UI', sans-serif" font-size="11" fill="#cbd5e1">• Zeek conn.log JSON Parser</text>
-      <text x="15" y="58" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94a3b8">• Suricata eve.json Alerts</text>
-      <text x="15" y="74" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94a3b8">• Protocol State &amp; Service Mapping</text>
-    </g>
-
-    <!-- Sub-Box 4: Linux eBPF / XDP -->
-    <g transform="translate(15, 355)">
-      <rect width="220" height="95" rx="8" fill="#091b29" stroke="#0ea5e9" stroke-width="1.5"/>
-      <text x="15" y="22" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#00e5ff">Linux eBPF / XDP Probe</text>
-      <text x="15" y="42" font-family="'Segoe UI', sans-serif" font-size="11" fill="#bae6fd">• Driver-Level Hook (cybercast_xdp.c)</text>
-      <text x="15" y="58" font-family="'Segoe UI', sans-serif" font-size="11" fill="#38bdf8">• 14.2M pkts/sec (100 Gbps)</text>
-      <text x="15" y="74" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94a3b8">• 48ns Latency, &lt;2.5% CPU Overhead</text>
-      <text x="15" y="88" font-family="'Segoe UI', sans-serif" font-size="10" fill="#64748b">• Zero Memory-Copy Kernel Tap</text>
-    </g>
-
-    <!-- Ingestion Output Tag -->
-    <g transform="translate(15, 470)">
-      <rect width="220" height="135" rx="8" fill="#032541" stroke="#38bdf8" stroke-width="1"/>
-      <text x="110" y="22" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="bold" fill="#7dd3fc" text-anchor="middle">Joint Invariant Extractor</text>
-      <text x="15" y="42" font-family="'Segoe UI', sans-serif" font-size="11" fill="#e0f2fe">• Flow Stats (11 features)</text>
-      <text x="15" y="60" font-family="'Segoe UI', sans-serif" font-size="11" fill="#e0f2fe">• TCP Flags: SYN/ACK/RST (6)</text>
-      <text x="15" y="78" font-family="'Segoe UI', sans-serif" font-size="11" fill="#e0f2fe">• Deep Packet Metrics (10)</text>
-      <rect x="25" y="94" width="170" height="26" rx="4" fill="#0284c7"/>
-      <text x="110" y="112" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">Vector S_t ∈ R^27</text>
-    </g>
+  <!-- Box 2: Packet capture -->
+  <g transform="translate(20, 270)">
+    <rect width="180" height="150" rx="10" fill="#f0f9ff" stroke="#0284c7" stroke-width="2.5"/>
+    <text x="90" y="38" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="16" font-weight="bold" fill="#0f172a" text-anchor="middle">Packet capture</text>
+    <text x="90" y="68" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="12" fill="#475569" text-anchor="middle">pcap / pcapng</text>
+    <text x="90" y="88" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="12" fill="#475569" text-anchor="middle">(Scapy DPI &amp; eBPF XDP)</text>
+    <text x="90" y="108" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="12" fill="#0284c7" font-weight="600" text-anchor="middle">~125k pkts/s to 100 Gbps</text>
   </g>
 
-  <!-- CONNECTOR 1 -->
-  <g transform="translate(300, 415)">
-    <line x1="0" y1="0" x2="35" y2="0" stroke="#38bdf8" stroke-width="3" stroke-dasharray="4,2"/>
-    <polygon points="35,0 27,-6 27,6" fill="#38bdf8"/>
-    <text x="18" y="-10" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="bold" fill="#38bdf8" text-anchor="middle">S_t (27-D)</text>
+  <!-- Arrow: Box 1 -> Box 3 -->
+  <line x1="200" y1="135" x2="238" y2="135" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Arrow: Box 2 -> Box 4 -->
+  <line x1="200" y1="345" x2="238" y2="345" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- ==================== COLUMN 2: LOADERS & EXTRACTION (MINT GREEN) ==================== -->
+  <!-- Box 3: Flow loaders -->
+  <g transform="translate(240, 60)">
+    <rect width="185" height="150" rx="10" fill="#ecfdf5" stroke="#059669" stroke-width="2.5"/>
+    <text x="92" y="38" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="16" font-weight="bold" fill="#064e3b" text-anchor="middle">Flow loaders</text>
+    <text x="92" y="68" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="12" fill="#047857" text-anchor="middle">one schema for every dataset:</text>
+    <text x="92" y="88" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="12" fill="#334155" text-anchor="middle">flags, bytes, volumes,</text>
+    <text x="92" y="108" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="12" fill="#334155" text-anchor="middle">IAT mean/var, host ratios</text>
   </g>
 
-  <!-- SECTION 2: TEMPORAL PYRAMIDING & WORLD MODEL -->
-  <g transform="translate(340, 100)">
-    <!-- Container -->
-    <rect width="320" height="630" rx="12" fill="url(#aiGrad)" stroke="#818cf8" stroke-width="2"/>
-    <rect width="320" height="36" rx="12" fill="#4338ca" fill-opacity="0.4"/>
-    <text x="160" y="24" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="bold" fill="#a5b4fc" text-anchor="middle">
-      2 · TEMPORAL WORLD MODEL
-    </text>
+  <!-- Box 4: packet_features -->
+  <g transform="translate(240, 270)">
+    <rect width="185" height="150" rx="10" fill="#ecfdf5" stroke="#059669" stroke-width="2.5"/>
+    <text x="92" y="38" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="16" font-weight="bold" fill="#064e3b" text-anchor="middle">packet_features</text>
+    <text x="92" y="68" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="12" fill="#334155" text-anchor="middle">TTL &amp; session variance,</text>
+    <text x="92" y="88" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="12" fill="#334155" text-anchor="middle">TCP window, fragments,</text>
+    <text x="92" y="108" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="12" fill="#334155" text-anchor="middle">port scans, East-West pivot</text>
+  </g>
 
-    <!-- Sub-Box: Multi-Scale Pyramiding -->
-    <g transform="translate(18, 55)">
-      <rect width="284" height="75" rx="8" fill="#1e1b4b" stroke="#6366f1" stroke-width="1.5"/>
-      <text x="15" y="22" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#c7d2fe">Multi-Scale Pyramiding</text>
-      <text x="15" y="42" font-family="'Segoe UI', sans-serif" font-size="11" fill="#e0e7ff">• Real-time: Δt = 5s (Micro-bursts / DoS)</text>
-      <text x="15" y="58" font-family="'Segoe UI', sans-serif" font-size="11" fill="#a5b4fc">• Tactical: Δt = 15s | Strategic: Δt = 30s</text>
+  <!-- Arrow: Box 3 -> State S_t (with "window" label) -->
+  <path d="M 425 135 L 450 135 L 468 180" fill="none" stroke="#059669" stroke-width="2" marker-end="url(#arrow-green)"/>
+  <text x="440" y="125" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="11" fill="#059669" font-weight="600">window</text>
+
+  <!-- Arrow: Box 4 -> State S_t (with "align" label) -->
+  <path d="M 425 345 L 450 345 L 468 300" fill="none" stroke="#059669" stroke-width="2" marker-end="url(#arrow-green)"/>
+  <text x="440" y="360" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="11" fill="#059669" font-weight="600">align</text>
+
+  <!-- ==================== COLUMN 3: COMBINED STATE S_t ==================== -->
+  <!-- Box 5: State S_t -->
+  <g transform="translate(470, 140)">
+    <rect width="185" height="200" rx="10" fill="#ecfdf5" stroke="#059669" stroke-width="2.5"/>
+    <text x="92" y="38" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="17" font-weight="bold" fill="#064e3b" text-anchor="middle">State S_t (10 s)</text>
+    <text x="92" y="68" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="12" fill="#047857" font-weight="600" text-anchor="middle">27 Joint Invariants:</text>
+    <text x="92" y="92" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="11.5" fill="#334155" text-anchor="middle">11 flow-level features</text>
+    <text x="92" y="112" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="11.5" fill="#334155" text-anchor="middle">+ 6 TCP flag ratios</text>
+    <text x="92" y="132" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="11.5" fill="#334155" text-anchor="middle">+ 10 packet metrics</text>
+    <text x="92" y="152" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="11.5" fill="#64748b" text-anchor="middle">(incl. East-West &amp; entropy)</text>
+    <rect x="22" y="165" width="141" height="22" rx="4" fill="#10b981" fill-opacity="0.2"/>
+    <text x="92" y="180" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="11" font-weight="bold" fill="#065f46" text-anchor="middle">Vector S_t ∈ ℝ²⁷</text>
+  </g>
+
+  <!-- Arrow: State S_t -> World model -->
+  <line x1="655" y1="240" x2="695" y2="240" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- ==================== COLUMN 4: WORLD MODEL (PURPLE CONTAINER) ==================== -->
+  <g transform="translate(695, 45)">
+    <!-- Container Box -->
+    <rect width="240" height="390" rx="14" fill="#faf5ff" stroke="#6366f1" stroke-width="2.5"/>
+    <text x="120" y="32" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="17" font-weight="bold" fill="#3730a3" text-anchor="middle">World model</text>
+
+    <!-- Sub-box A: Encoder -->
+    <g transform="translate(18, 48)">
+      <rect width="204" height="68" rx="8" fill="#ffffff" stroke="#818cf8" stroke-width="1.8"/>
+      <text x="102" y="24" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="13.5" font-weight="bold" fill="#1e1b4b" text-anchor="middle">Encoder q(z_t | S_t)</text>
+      <text x="102" y="46" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="11" fill="#4f46e5" text-anchor="middle">Gaussian latent state / Embedding</text>
     </g>
 
-    <!-- Sub-Box: Latent Projection & Positional Encoding -->
-    <g transform="translate(18, 145)">
-      <rect width="284" height="75" rx="8" fill="#1e1b4b" stroke="#6366f1" stroke-width="1.5"/>
-      <text x="15" y="22" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#c7d2fe">Latent State Projection</text>
-      <text x="15" y="42" font-family="'Segoe UI', sans-serif" font-size="11" fill="#e0e7ff">• Linear Embedding: R^27 → R^d_model (d=64)</text>
-      <text x="15" y="58" font-family="'Segoe UI', sans-serif" font-size="11" fill="#a5b4fc">• Sinusoidal Positional Encoding PE(pos, 2i)</text>
+    <!-- Sub-box B: Memory -->
+    <g transform="translate(18, 128)">
+      <rect width="204" height="68" rx="8" fill="#ffffff" stroke="#818cf8" stroke-width="1.8"/>
+      <text x="102" y="24" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="13.5" font-weight="bold" fill="#1e1b4b" text-anchor="middle">Attention memory h_t</text>
+      <text x="102" y="46" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="11" fill="#4f46e5" text-anchor="middle">temporal context (t-9 ... t)</text>
     </g>
 
-    <!-- Sub-Box: Multi-Head Self-Attention -->
-    <g transform="translate(18, 235)">
-      <rect width="284" height="110" rx="8" fill="#18182f" stroke="#a855f7" stroke-width="2" filter="url(#purpleGlow)"/>
-      <text x="15" y="22" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#f0abfc">Temporal Self-Attention</text>
-      <text x="15" y="42" font-family="'Segoe UI', sans-serif" font-size="11" fill="#fdf4ff">• Causal Multi-Head Attention over (t-9 ... t)</text>
-      <text x="15" y="60" font-family="'Segoe UI', sans-serif" font-size="11" fill="#e879f9">• Attention(Q,K,V) = softmax(QK^T / √d_k) V</text>
-      <text x="15" y="78" font-family="'Segoe UI', sans-serif" font-size="11" fill="#cbd5e1">• Solves Low-and-Slow APT Persistence</text>
-      <text x="15" y="96" font-family="'Segoe UI', sans-serif" font-size="11" fill="#a855f7">• Explainability: Time-Window Attribution</text>
+    <!-- Sub-box C: Prior -->
+    <g transform="translate(18, 208)">
+      <rect width="204" height="68" rx="8" fill="#ffffff" stroke="#818cf8" stroke-width="1.8"/>
+      <text x="102" y="24" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="13.5" font-weight="bold" fill="#1e1b4b" text-anchor="middle">Prior p(z_t+1 | h_t+1)</text>
+      <text x="102" y="46" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="11" fill="#4f46e5" text-anchor="middle">learned transition dynamics</text>
     </g>
 
-    <!-- Sub-Box: Transition Dynamics Core -->
-    <g transform="translate(18, 360)">
-      <rect width="284" height="110" rx="8" fill="#1e1b4b" stroke="#818cf8" stroke-width="1.5"/>
-      <text x="15" y="22" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#c7d2fe">Latent Dynamics Engine</text>
-      <text x="15" y="42" font-family="'Segoe UI', sans-serif" font-size="11" fill="#e0e7ff">• Learns P(S_{t+1} | S_{≤t}) Causal Prior</text>
-      <text x="15" y="60" font-family="'Segoe UI', sans-serif" font-size="11" fill="#c7d2fe">• Dynamics Head: ΔS_t = W_dyn · h_t + b</text>
-      <text x="15" y="78" font-family="'Segoe UI', sans-serif" font-size="11" fill="#cbd5e1">• Supports LSTM, GRU &amp; Transformer Backends</text>
-      <text x="15" y="96" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94a3b8">• Gradient Saliency Feature Scoring</text>
-    </g>
-
-    <!-- Sub-Box: K-Step Autoregressive Rollout -->
-    <g transform="translate(18, 485)">
-      <rect width="284" height="120" rx="8" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
-      <text x="15" y="22" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#38bdf8">K-Step Forward Rollout</text>
-      <text x="15" y="42" font-family="'Segoe UI', sans-serif" font-size="11" fill="#f8fafc">• Rolls Forward K=15 Steps (+75 seconds)</text>
-      <text x="15" y="60" font-family="'Segoe UI', sans-serif" font-size="11" fill="#e2e8f0">• S_{t+k+1} = S_{t+k} + f_θ(h_{t+k})</text>
-      <text x="15" y="78" font-family="'Segoe UI', sans-serif" font-size="11" fill="#38bdf8">• Monte Carlo Perturbation Particles (32–64)</text>
-      <text x="15" y="96" font-family="'Segoe UI', sans-serif" font-size="11" fill="#a5b4fc">• Epistemic 95% Confidence Bounds</text>
-      <text x="15" y="112" font-family="'Segoe UI', sans-serif" font-size="11" fill="#10b981">• Advance Warning: +48s to +54s Lead Time</text>
+    <!-- Sub-box D: Decoder -->
+    <g transform="translate(18, 288)">
+      <rect width="204" height="74" rx="8" fill="#ffffff" stroke="#818cf8" stroke-width="1.8"/>
+      <text x="102" y="24" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="13.5" font-weight="bold" fill="#1e1b4b" text-anchor="middle">Decoder p(S | z)</text>
+      <text x="102" y="44" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="11" fill="#4f46e5" text-anchor="middle">reconstructs state S &amp; manifold</text>
+      <text x="102" y="60" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="10.5" fill="#64748b" text-anchor="middle">ΔS divergence for zero-days</text>
     </g>
   </g>
 
-  <!-- CONNECTOR 2 -->
-  <g transform="translate(660, 415)">
-    <line x1="0" y1="0" x2="35" y2="0" stroke="#818cf8" stroke-width="3" stroke-dasharray="4,2"/>
-    <polygon points="35,0 27,-6 27,6" fill="#818cf8"/>
-    <text x="18" y="-10" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="bold" fill="#818cf8" text-anchor="middle">Rollouts</text>
+  <!-- Arrow: World model -> Forecast (with "imagine" label) -->
+  <line x1="935" y1="135" x2="975" y2="135" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="955" y="123" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="11" fill="#6366f1" font-weight="600" text-anchor="middle">imagine</text>
+
+  <!-- Arrow: World model -> Explain + Alert (with "gradients" label) -->
+  <line x1="935" y1="345" x2="975" y2="345" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="955" y="333" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="11" fill="#6366f1" font-weight="600" text-anchor="middle">gradients</text>
+
+  <!-- ==================== COLUMN 5: FORECAST & EXPLAIN (ORANGE / PEACH) ==================== -->
+  <!-- Box 7: K-step forecast -->
+  <g transform="translate(975, 45)">
+    <rect width="205" height="180" rx="10" fill="#fff7ed" stroke="#ea580c" stroke-width="2.5"/>
+    <text x="102" y="34" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="16" font-weight="bold" fill="#7c2d12" text-anchor="middle">K-step forecast</text>
+    <text x="102" y="62" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="12" fill="#9a3412" font-weight="600" text-anchor="middle">32-64 Monte-Carlo rollouts</text>
+    <text x="102" y="84" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="12" fill="#334155" text-anchor="middle">P(infiltration) per window</text>
+    <text x="102" y="104" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="12" fill="#334155" text-anchor="middle">+ 95% epistemic CI band</text>
+    <text x="102" y="126" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="12" fill="#c2410c" font-weight="600" text-anchor="middle">MITRE ATT&amp;CK stages (0..5)</text>
+    <text x="102" y="146" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Lead time: +48s to +54s</text>
   </g>
 
-  <!-- SECTION 3: MULTI-TASK HEADS & PREDICTION -->
-  <g transform="translate(700, 100)">
-    <!-- Container -->
-    <rect width="220" height="630" rx="12" fill="url(#cardGrad2)" stroke="#f59e0b" stroke-width="2"/>
-    <rect width="220" height="36" rx="12" fill="#b45309" fill-opacity="0.4"/>
-    <text x="110" y="24" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="bold" fill="#fde68a" text-anchor="middle">
-      3 · PREDICTION HEADS
-    </text>
-
-    <!-- Head 1: Infiltration Risk -->
-    <g transform="translate(15, 55)">
-      <rect width="190" height="110" rx="8" fill="#1c1917" stroke="#ef4444" stroke-width="1.5"/>
-      <text x="15" y="22" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#f87171">Infiltration Probability</text>
-      <text x="15" y="44" font-family="'Segoe UI', sans-serif" font-size="11" fill="#fca5a5">• P(Infil_{t+k}) = σ(W_inf · h)</text>
-      <text x="15" y="62" font-family="'Segoe UI', sans-serif" font-size="11" fill="#cbd5e1">• Score Range: [0.0, 1.0]</text>
-      <text x="15" y="80" font-family="'Segoe UI', sans-serif" font-size="11" fill="#f87171">• Alert Threshold: &gt; 0.65</text>
-      <text x="15" y="98" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94a3b8">• Time-To-Compromise (TTC)</text>
-    </g>
-
-    <!-- Head 2: MITRE ATT&CK Mapping -->
-    <g transform="translate(15, 180)">
-      <rect width="190" height="155" rx="8" fill="#1c1917" stroke="#f59e0b" stroke-width="1.5"/>
-      <text x="15" y="22" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#fbbf24">MITRE ATT&CK Stages</text>
-      <text x="15" y="40" font-family="'Segoe UI', sans-serif" font-size="10" fill="#cbd5e1">• Softmax Head (0..5 Logits)</text>
-      <text x="15" y="58" font-family="'Segoe UI', sans-serif" font-size="10" fill="#94a3b8">0: Benign Enterprise Normal</text>
-      <text x="15" y="74" font-family="'Segoe UI', sans-serif" font-size="10" fill="#38bdf8">1: Reconnaissance (T1595)</text>
-      <text x="15" y="90" font-family="'Segoe UI', sans-serif" font-size="10" fill="#fbbf24">2: Initial Access (T1190)</text>
-      <text x="15" y="106" font-family="'Segoe UI', sans-serif" font-size="10" fill="#f97316">3: Lateral Movement (T1021)</text>
-      <text x="15" y="122" font-family="'Segoe UI', sans-serif" font-size="10" fill="#e11d48">4: Command &amp; Control (T1071)</text>
-      <text x="15" y="138" font-family="'Segoe UI', sans-serif" font-size="10" fill="#dc2626">5: Exfiltration/Impact (T1041)</text>
-    </g>
-
-    <!-- Head 3: Zero-Day Divergence -->
-    <g transform="translate(15, 350)">
-      <rect width="190" height="110" rx="8" fill="#1c1917" stroke="#ec4899" stroke-width="1.5"/>
-      <text x="15" y="22" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#f472b6">Zero-Day Divergence</text>
-      <text x="15" y="44" font-family="'Segoe UI', sans-serif" font-size="11" fill="#cbd5e1">• Manifold Distance ||ΔS||</text>
-      <text x="15" y="62" font-family="'Segoe UI', sans-serif" font-size="11" fill="#cbd5e1">• Epistemic Variance &gt; 0.16</text>
-      <text x="15" y="80" font-family="'Segoe UI', sans-serif" font-size="11" fill="#f472b6">• Out-of-Distribution Alert</text>
-      <text x="15" y="98" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94a3b8">• Flags Unknown Exploits</text>
-    </g>
-
-    <!-- Head 4: IP Proctor Engine -->
-    <g transform="translate(15, 475)">
-      <rect width="190" height="130" rx="8" fill="#1c1917" stroke="#06b6d4" stroke-width="1.5"/>
-      <text x="15" y="22" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#22d3ee">IP Proctor &amp; Predictor</text>
-      <text x="15" y="42" font-family="'Segoe UI', sans-serif" font-size="11" fill="#cbd5e1">• Arbitrary Target IP Audit</text>
-      <text x="15" y="60" font-family="'Segoe UI', sans-serif" font-size="11" fill="#cbd5e1">• Heuristic Score (0–100)</text>
-      <text x="15" y="78" font-family="'Segoe UI', sans-serif" font-size="11" fill="#22d3ee">• Host Threat Classification</text>
-      <text x="15" y="96" font-family="'Segoe UI', sans-serif" font-size="11" fill="#cbd5e1">• Internal SMB Pivot Audit</text>
-      <text x="15" y="114" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94a3b8">• Per-IP Forward Trajectory</text>
-    </g>
+  <!-- Box 8: Explain + Alert -->
+  <g transform="translate(975, 255)">
+    <rect width="205" height="180" rx="10" fill="#fff7ed" stroke="#ea580c" stroke-width="2.5"/>
+    <text x="102" y="32" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="16" font-weight="bold" fill="#7c2d12" text-anchor="middle">Explain + Alert</text>
+    <text x="102" y="58" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="11.5" fill="#334155" text-anchor="middle">Integrated Gradients</text>
+    <text x="102" y="76" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="11.5" fill="#334155" text-anchor="middle">&amp; Self-Attention heatmaps</text>
+    <text x="102" y="96" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="11.5" fill="#9a3412" font-weight="600" text-anchor="middle">Counterfactual "What-If"</text>
+    <text x="102" y="114" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="11" fill="#334155" text-anchor="middle">SMB block: 89% → 3% drop</text>
+    <text x="102" y="134" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="11" fill="#334155" text-anchor="middle">Pre-deployment safety sandbox</text>
+    <text x="102" y="152" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="11" fill="#047857" font-weight="600" text-anchor="middle">Automated eBPF / iptables</text>
   </g>
 
-  <!-- CONNECTOR 3 -->
-  <g transform="translate(920, 415)">
-    <line x1="0" y1="0" x2="35" y2="0" stroke="#f59e0b" stroke-width="3" stroke-dasharray="4,2"/>
-    <polygon points="35,0 27,-6 27,6" fill="#f59e0b"/>
-    <text x="18" y="-10" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="bold" fill="#f59e0b" text-anchor="middle">Mitigations</text>
-  </g>
-
-  <!-- SECTION 4: PROACTIVE MITIGATION & OPS CENTER -->
-  <g transform="translate(960, 100)">
-    <!-- Container -->
-    <rect width="200" height="630" rx="12" fill="url(#actionGrad)" stroke="#10b981" stroke-width="2"/>
-    <rect width="200" height="36" rx="12" fill="#047857" fill-opacity="0.4"/>
-    <text x="100" y="24" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="bold" fill="#6ee7b7" text-anchor="middle">
-      4 · DEFENSE &amp; OPS
-    </text>
-
-    <!-- Sub-Box: What-If Simulator -->
-    <g transform="translate(12, 55)">
-      <rect width="176" height="110" rx="8" fill="#022c22" stroke="#10b981" stroke-width="1.5" filter="url(#greenGlow)"/>
-      <text x="12" y="22" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="bold" fill="#34d399">What-If Simulator</text>
-      <text x="12" y="42" font-family="'Segoe UI', sans-serif" font-size="10" fill="#a7f3d0">• Counterfactual Modeling</text>
-      <text x="12" y="58" font-family="'Segoe UI', sans-serif" font-size="10" fill="#e2e8f0">• Simulates Interventions</text>
-      <text x="12" y="74" font-family="'Segoe UI', sans-serif" font-size="10" fill="#34d399">• SMB Port 445 Severance</text>
-      <text x="12" y="90" font-family="'Segoe UI', sans-serif" font-size="10" fill="#6ee7b7">• Risk: 89% → 3% Collapse</text>
-      <text x="12" y="104" font-family="'Segoe UI', sans-serif" font-size="9" fill="#94a3b8">• Verifies Proactive Drop</text>
-    </g>
-
-    <!-- Sub-Box: Pre-Deployment Sandbox -->
-    <g transform="translate(12, 175)">
-      <rect width="176" height="95" rx="8" fill="#064e3b" stroke="#059669" stroke-width="1.5"/>
-      <text x="12" y="20" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="bold" fill="#a7f3d0">Safety Dry-Run Sandbox</text>
-      <text x="12" y="38" font-family="'Segoe UI', sans-serif" font-size="10" fill="#cbd5e1">• Critical Asset Testing</text>
-      <text x="12" y="54" font-family="'Segoe UI', sans-serif" font-size="10" fill="#a7f3d0">• AD / DNS / SCADA Checks</text>
-      <text x="12" y="70" font-family="'Segoe UI', sans-serif" font-size="10" fill="#6ee7b7">• Zero Operational Outages</text>
-      <text x="12" y="86" font-family="'Segoe UI', sans-serif" font-size="10" fill="#94a3b8">• Blast Radius Lockdown</text>
-    </g>
-
-    <!-- Sub-Box: Synthesized Playbooks -->
-    <g transform="translate(12, 280)">
-      <rect width="176" height="110" rx="8" fill="#064e3b" stroke="#059669" stroke-width="1.5"/>
-      <text x="12" y="20" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="bold" fill="#a7f3d0">Automated Playbooks</text>
-      <text x="12" y="38" font-family="'Segoe UI', sans-serif" font-size="10" fill="#cbd5e1">• Linux iptables Rules</text>
-      <text x="12" y="54" font-family="'Segoe UI', sans-serif" font-size="10" fill="#cbd5e1">• PowerShell NetFirewall</text>
-      <text x="12" y="70" font-family="'Segoe UI', sans-serif" font-size="10" fill="#a7f3d0">• Suricata / Snort Signatures</text>
-      <text x="12" y="86" font-family="'Segoe UI', sans-serif" font-size="10" fill="#38bdf8">• Driver-Level eBPF Drops</text>
-      <text x="12" y="102" font-family="'Segoe UI', sans-serif" font-size="10" fill="#94a3b8">• Automated Zero-Trust</text>
-    </g>
-
-    <!-- Sub-Box: Autonomous SOC AI Copilot -->
-    <g transform="translate(12, 400)">
-      <rect width="176" height="95" rx="8" fill="#134e4a" stroke="#2dd4bf" stroke-width="1.5"/>
-      <text x="12" y="20" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="bold" fill="#5eead4">SOC AI Copilot</text>
-      <text x="12" y="38" font-family="'Segoe UI', sans-serif" font-size="10" fill="#ccfbf1">• Telemetry-Grounded</text>
-      <text x="12" y="54" font-family="'Segoe UI', sans-serif" font-size="10" fill="#2dd4bf">• "How It Can Be Better"</text>
-      <text x="12" y="70" font-family="'Segoe UI', sans-serif" font-size="10" fill="#e2e8f0">• Executable Mitigation</text>
-      <text x="12" y="86" font-family="'Segoe UI', sans-serif" font-size="9" fill="#94a3b8">• Dual: Drawer &amp; Tab 10</text>
-    </g>
-
-    <!-- Sub-Box: Evidence Vault & STIX 2.1 -->
-    <g transform="translate(12, 505)">
-      <rect width="176" height="100" rx="8" fill="#064e3b" stroke="#059669" stroke-width="1.5"/>
-      <text x="12" y="20" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="bold" fill="#a7f3d0">Digital Evidence Vault</text>
-      <text x="12" y="38" font-family="'Segoe UI', sans-serif" font-size="10" fill="#cbd5e1">• Tamper-Evident SHA-256</text>
-      <text x="12" y="54" font-family="'Segoe UI', sans-serif" font-size="10" fill="#34d399">• OASIS STIX 2.1 CTI JSON</text>
-      <text x="12" y="70" font-family="'Segoe UI', sans-serif" font-size="10" fill="#cbd5e1">• Markdown Dossier Export</text>
-      <text x="12" y="86" font-family="'Segoe UI', sans-serif" font-size="9" fill="#94a3b8">• 20-Point Legal Safe Harbor</text>
-    </g>
-  </g>
-
-  <!-- Bottom Badges / Governance Footer -->
-  <g transform="translate(60, 745)">
-    <text x="0" y="16" font-family="'Segoe UI', sans-serif" font-size="11" fill="#64748b">
-      Air-Gapped: 100% Offline (Zero Cloud APIs) · Ingestion: 14.2M pkts/s eBPF/XDP · CPU Inference: ~2.4ms · Advance Lead Time: +48s to +54s · FPR: 2.8%
-    </text>
-    <text x="1080" y="16" font-family="'Segoe UI', sans-serif" font-size="11" fill="#38bdf8" text-anchor="end">
-      Team South Techno (196601) · SIH 2026 · NTRO
-    </text>
-  </g>
+  <!-- ==================== BOTTOM HIGHLIGHT CAPTION ==================== -->
+  <text x="600" y="485" font-family="'Segoe UI', Inter, Arial, sans-serif" font-size="14" font-weight="bold" fill="#db2777" text-anchor="middle">
+    Offline dashboard: live timeline, forecast band, stage mix, attributions, flagged hosts &amp; flows, incident report | no cloud APIs
+  </text>
 </svg>

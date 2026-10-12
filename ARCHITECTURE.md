@@ -62,6 +62,12 @@ graph TD
     style S5 fill:#022c22,stroke:#10b981,stroke-width:2px,color:#6ee7b7
 ```
 
+* **State.** Every 10 s window becomes $S_t = [\text{11 flow-level features} \mid \text{6 TCP flag distributions} \mid \text{10 packet-level features}]$ ($S_t \in \mathbb{R}^{27}$). Flow and packet sources are aligned on absolute time windows, so no per-flow join is needed and it scales to millions of flows. Missing features (for example IAT in Argus flows, or no PCAP at all) are zero-filled, and the model is trained with modality dropout so it works on CSV-only, PCAP-only and CSV+PCAP input.
+* **World model.** $q(z_t \mid S_t)$ encodes the observed state; temporal multi-head attention memory $h_t$ carries context over history windows ($t-9 \dots t$); the prior $p(z_{t+1} \mid h_{t+1})$ is the learned transition distribution; the decoder reconstructs $S$. Training minimizes reconstruction loss + latent dynamics prediction error + multi-task attack/stage losses on both observed and imagined future states against ground-truth kill-chain labels.
+* **Forecast.** From the current state, sample 32 to 64 Monte Carlo latent trajectories $K = 15$ steps (75 s) ahead and read the heads: $\mathcal{P}(\text{infiltration})$ per future window with a 95% epistemic uncertainty band, projected Time to Compromise (TTC), and the MITRE ATT&CK stage distribution (Stages 0 to 5).
+* **Surprise & Zero-Day Divergence.** $\|\Delta S\| = \|S_{t+1} - S_t\|$ measures how far the observed traffic trajectory departs from what the model expected on the benign manifold. When trajectory divergence $> 1.85$ or Monte Carlo epistemic variance spikes ($>0.16$), the system flags an unsupervised zero-day anomaly for unseen exploit mechanics.
+* **Explanations & Counterfactual "What-If" Defense.** Integrated Gradients of $\mathcal{P}(\text{infiltration within } K)$ with respect to every feature in every window of the context, coupled with temporal attention heatmaps. The counterfactual defense simulator simulates interventions (e.g. severing East-West SMB port 445 or perimeter SYN rate-limiting), proving mathematically how the action collapses future risk from 89% down to 3%, vetted through a pre-deployment safety sandbox before synthesizing eBPF/iptables rules.
+
 ---
 
 ## 2. Telemetry Ingestion & State Representation ($\mathbb{R}^{27}$)
