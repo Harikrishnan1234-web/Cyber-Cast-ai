@@ -1,8 +1,5 @@
 <p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/images/logo.svg">
-    <img src="docs/images/logo.svg" alt="CyberCast AI logo" width="96">
-  </picture>
+  <img src="docs/images/logo.png" alt="CyberCast AI logo" width="130" style="border-radius: 14px; box-shadow: 0 4px 20px rgba(0, 229, 255, 0.25);">
 </p>
 
 <h1 align="center">CyberCast AI — Forewarning Network Defense</h1>
