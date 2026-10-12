@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00e5ff" />
+      <stop offset="50%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#6366f1" />
+    </linearGradient>
+    <linearGradient id="glowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#818cf8" stop-opacity="0.2"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background Shield Outline -->
+  <path d="M 100 15 L 170 45 C 170 115 135 165 100 185 C 65 165 30 115 30 45 Z" 
+        fill="#0a0f1d" stroke="url(#shieldGrad)" stroke-width="6" filter="url(#glow)"/>
+
+  <!-- Radar Rings -->
+  <circle cx="100" cy="95" r="50" fill="none" stroke="#1e293b" stroke-width="2" stroke-dasharray="4,4"/>
+  <circle cx="100" cy="95" r="32" fill="none" stroke="#334155" stroke-width="2"/>
+  <circle cx="100" cy="95" r="16" fill="none" stroke="#475569" stroke-width="2"/>
+
+  <!-- Radar Sweep Ray -->
+  <path d="M 100 95 L 138 60 A 50 50 0 0 0 100 45 Z" fill="url(#glowGrad)"/>
+
+  <!-- Neural Nodes & Connections -->
+  <line x1="72" y1="80" x2="100" y2="95" stroke="#00e5ff" stroke-width="2"/>
+  <line x1="128" y1="80" x2="100" y2="95" stroke="#00e5ff" stroke-width="2"/>
+  <line x1="100" y1="95" x2="100" y2="135" stroke="#38bdf8" stroke-width="2.5"/>
+  <line x1="72" y1="120" x2="100" y2="135" stroke="#818cf8" stroke-width="2"/>
+  <line x1="128" y1="120" x2="100" y2="135" stroke="#818cf8" stroke-width="2"/>
+
+  <!-- Future Forward Pulse Arrow -->
+  <polygon points="100,68 106,78 94,78" fill="#00e5ff"/>
+  <circle cx="100" cy="95" r="6" fill="#00e5ff" filter="url(#glow)"/>
+
+  <circle cx="72" cy="80" r="4.5" fill="#38bdf8"/>
+  <circle cx="128" cy="80" r="4.5" fill="#38bdf8"/>
+  <circle cx="72" cy="120" r="4.5" fill="#818cf8"/>
+  <circle cx="128" cy="120" r="4.5" fill="#818cf8"/>
+  <circle cx="100" cy="135" r="5.5" fill="#a855f7" filter="url(#glow)"/>
+</svg>
