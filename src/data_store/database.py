@@ -25,7 +25,17 @@ class CyberCastDatabase:
     """Relational database manager for CyberCast AI Data Tier."""
 
     def __init__(self, db_path: Optional[str] = None):
-        self.db_path = db_path or os.environ.get("CYBERCAST_DB_PATH", DEFAULT_DB_PATH)
+        if not db_path and (os.environ.get("VERCEL") or os.environ.get("AWS_LAMBDA_FUNCTION_NAME")):
+            tmp_db = "/tmp/cybercast_vault.db"
+            if not os.path.exists(tmp_db) and os.path.exists(DEFAULT_DB_PATH):
+                import shutil
+                try:
+                    shutil.copyfile(DEFAULT_DB_PATH, tmp_db)
+                except Exception:
+                    pass
+            self.db_path = tmp_db
+        else:
+            self.db_path = db_path or os.environ.get("CYBERCAST_DB_PATH", DEFAULT_DB_PATH)
         self.db_url = os.environ.get("CYBERCAST_DB_URL", "")
         self.is_postgres = self.db_url.startswith("postgresql://") or self.db_url.startswith("postgres://")
         self._init_schema()

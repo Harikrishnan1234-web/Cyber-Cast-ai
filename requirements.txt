@@ -1,5 +1,5 @@
-# CyberCast AI Requirements
-torch>=2.2.0
+# CyberCast AI Requirements (Cloud / Serverless & Local Runtime)
+# Note: For optional local PyTorch GPU acceleration, run: pip install -r requirements-local.txt
 scapy>=2.5.0
 numpy>=1.24.0
 pandas>=2.0.0

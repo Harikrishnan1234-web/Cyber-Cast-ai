@@ -1,0 +1,3 @@
+# CyberCast AI Requirements (Local Development & GPU Acceleration)
+-r requirements.txt
+torch>=2.2.0
