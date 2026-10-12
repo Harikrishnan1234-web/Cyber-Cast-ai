@@ -207,6 +207,10 @@ OpenAPI documentation available at: **`http://127.0.0.1:8000/docs`**
 
 ## Architecture
 
+<p align="center">
+  <img src="docs/images/architecture.svg" alt="CyberCast AI Architecture" width="100%">
+</p>
+
 ```
 [ Raw Network Telemetry ]
    ├── NetFlow / IPFIX / Flow Logs (CIC-IDS-2018 / CTU-13 / UNSW-NB15)
