@@ -45,6 +45,12 @@ AI-based network attack forecasting from network traffic data · runs fully offl
 
 ## Demo Walkthrough
 
+<p align="center">
+  <img src="docs/images/dashboard_dark.png" alt="CyberCast AI SOC Mission Control Dashboard" width="100%">
+</p>
+
+<sub>Real-time CyberCast AI SOC Mission Control dashboard forecasting an unfolding kill chain: forward simulation trajectory with 95% epistemic confidence bands, MITRE ATT&CK progression meter, 27-dimensional telemetry radar, and automated eBPF rules.</sub>
+
 ```text
        [ Observed Past Windows: t-9 ... t ]                  [ Autoregressive Future Rollout: t+1 ... t+15 ]
   0.0                                            0.5                                            1.0 (Critical)
@@ -60,6 +66,7 @@ AI-based network attack forecasting from network traffic data · runs fully offl
 ```
 
 The interactive dashboard streams network telemetry window by window ($5\text{s}$, $15\text{s}$, or $30\text{s}$). As an adversary advances through stealthy reconnaissance, the **Temporal Transformer World Model** simulates $K=15$ future steps, detecting lateral pivoting **48 to 54 seconds before data exfiltration or host encryption occurs**, while baseline static classifiers remain silent until damage is already underway.
+
 
 ---
 
@@ -101,12 +108,25 @@ Head-to-head empirical benchmarks on identical telemetry windows (tested across 
 * **Alert Fatigue Elimination:** By coupling temporal self-attention with epistemic uncertainty thresholding, the false-alarm rate drops from **12.4% down to 2.8%**, preventing SOC operator desensitization.
 * **Kill-Chain Multi-Tasking:** The dual-head architecture simultaneously predicts continuous state transitions $\hat{S}_{t+1}$, infiltration probability $\mathcal{P}(\text{Infil}_{t+k})$, and 6-stage MITRE ATT&CK logits.
 
+<p align="center">
+  <img src="docs/images/forecast_timeline.png" alt="CyberCast AI Forecast Timeline on Held-out Test Data" width="100%">
+</p>
+
+<sub>Network traffic risk probability forecast timeline over held-out test data: the CyberCast AI World Model forecasts attack risk 48 seconds ahead before high-value compromise (cyan curve), while the static baseline detects reactively only after damage (dashed orange line).</sub>
+
 ---
 
 ## What Makes It Different
 
 * **It forecasts instead of only detecting.** A learned world model simulates 15 future steps ahead ($\approx 75\text{s}$), projecting the attack trajectory before the adversary reaches critical targets.
 * **Counterfactual "What-If" defense simulator.** Defenders can test defensive interventions (e.g., isolating SMB port 445 or rate-limiting SYN bursts) *before* deployment. The model re-rolls the forecast trajectory under the intervention, mathematically demonstrating the risk collapse (e.g., from 89% down to 3%).
+
+<p align="center">
+  <img src="docs/images/whatif_simulator.png" alt="CyberCast AI Counterfactual What-If Proactive Defense Simulator" width="100%">
+</p>
+
+<sub>Counterfactual "What-If" Proactive Defense Simulator: simulating an intervention (severing SMB Port 445) collapses projected attack risk from 89% down to 3%, verified against the Pre-Deployment Safety Sandbox (AD, DNS, SCADA) before synthesizing eBPF/iptables rules.</sub>
+
 * **Dual-level feature fusion ($S_t \in \mathbb{R}^{27}$).** Jointly fuses 11 flow-level features (NetFlow/IPFIX inter-arrival times, byte ratios), 6 TCP flag distributions, and 10 deep packet header features (TTL variance, TCP window size, IP fragmentation, port-scan entropy, East-West pivot ratios).
 * **Autonomous SOC AI Copilot & Threat Advisor.** Grounded directly in live 27-dimensional state vectors ($S_t$), forward rollout trajectories, and IP Proctor behavioral audits. Guarantees a dedicated **"💡 How It Can Be Better"** actionable optimization playbook in every response.
 * **Arbitrary IP Traffic Proctor & Threat Predictor.** Test *any* target or source IP on-demand from ingested telemetry or live test traffic synthesis (5 threat profiles). Combines a heuristic behavioral audit (Proctor Score 0–100) with neural forward projection and IP-specific containment rules.

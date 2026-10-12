@@ -113,6 +113,11 @@ The World Model consists of three tightly coupled components:
 ### A. Counterfactual "What-If" Proactive Defense Simulator
 Traditional systems can only watch and classify. Because CyberCast AI learns transition dynamics, defenders can simulate an intervention $\tilde{A}_t$ (e.g. blocking SMB port 445 or rate-limiting SYN packets). The simulator reruns the forward rollout under the modified state, demonstrating mathematically how the intervention collapses the future attack probability back to the benign baseline (e.g., from 89% down to 3%).
 
+<p align="center">
+  <img src="docs/images/whatif_simulator.png" alt="CyberCast AI Counterfactual What-If Proactive Defense Simulator" width="100%">
+</p>
+
+
 ### B. Uncertainty Quantification via Monte Carlo Rollouts
 Rather than outputting an overconfident point estimate, CyberCast AI runs Monte Carlo perturbation rollouts, generating a 95% epistemic confidence band $[\mathcal{P}_{\text{lower}}, \mathcal{P}_{\text{upper}}]$. This prevents false alarms on noisy enterprise telemetry spikes, reducing the False Positive Rate to 2.8%.
 
