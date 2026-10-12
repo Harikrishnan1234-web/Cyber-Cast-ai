@@ -135,8 +135,8 @@ The launcher creates a private Python environment in `.venv`, installs requireme
 
 ```bash
 # 1. Clone repository
-git clone https://github.com/Harikrishnan1234-web/cyber-cast-ai.git
-cd "cyber cast ai"
+git clone https://github.com/Harikrishnan1234-web/Cyber-Cast-ai.git
+cd "Cyber-Cast-ai"
 
 # 2. Create and activate virtual environment
 python -m venv .venv
