@@ -367,6 +367,12 @@ async function initApp() {
     await loadBenchmarks();
     await loadComplianceAudit();
     showToast('CyberCast AI Mission Control connected successfully!', 'success');
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialTab = urlParams.get('tab');
+    if (initialTab) {
+      const btn = document.querySelector(`.tab-nav-btn[data-tab="${initialTab}"]`);
+      if (btn) btn.click();
+    }
   } catch (err) {
     console.error('Initialization error:', err);
     showToast(`Connection notice: ${err.message}`, 'info');

@@ -46,10 +46,10 @@ AI-based network attack forecasting from network traffic data · runs fully offl
 ## Demo Walkthrough
 
 <p align="center">
-  <img src="docs/images/dashboard_dark.png" alt="CyberCast AI SOC Mission Control Dashboard" width="100%">
+  <img src="docs/images/dashboard_real.png" alt="CyberCast AI SOC Mission Control Live Dashboard" width="100%">
 </p>
 
-<sub>Real-time CyberCast AI SOC Mission Control dashboard forecasting an unfolding kill chain: forward simulation trajectory with 95% epistemic confidence bands, MITRE ATT&CK progression meter, 27-dimensional telemetry radar, and automated eBPF rules.</sub>
+<sub>Real-time CyberCast AI SOC Mission Control dashboard forecasting an unfolding kill chain: forward simulation trajectory with 95% epistemic confidence bands, MITRE ATT&CK progression meter, 27-dimensional telemetry radar, and automated eBPF rules. Captured directly from the live application running on local port 8000.</sub>
 
 ```text
        [ Observed Past Windows: t-9 ... t ]                  [ Autoregressive Future Rollout: t+1 ... t+15 ]
@@ -109,10 +109,10 @@ Head-to-head empirical benchmarks on identical telemetry windows (tested across 
 * **Kill-Chain Multi-Tasking:** The dual-head architecture simultaneously predicts continuous state transitions $\hat{S}_{t+1}$, infiltration probability $\mathcal{P}(\text{Infil}_{t+k})$, and 6-stage MITRE ATT&CK logits.
 
 <p align="center">
-  <img src="docs/images/forecast_timeline.png" alt="CyberCast AI Forecast Timeline on Held-out Test Data" width="100%">
+  <img src="docs/images/ip_proctor_real.png" alt="CyberCast AI Deep IP Proctor & Behavioral Threat Inspection" width="100%">
 </p>
 
-<sub>Network traffic risk probability forecast timeline over held-out test data: the CyberCast AI World Model forecasts attack risk 48 seconds ahead before high-value compromise (cyan curve), while the static baseline detects reactively only after damage (dashed orange line).</sub>
+<sub>Deep IP Proctor & Rule Synthesis live interface: inspecting target host IP telemetry (10.0.1.99), synthesizing real-time sentry findings (port scan entropy and lateral movement violations), and projecting forward compromise trajectory with automated firewall isolation rules.</sub>
 
 ---
 
@@ -122,13 +122,20 @@ Head-to-head empirical benchmarks on identical telemetry windows (tested across 
 * **Counterfactual "What-If" defense simulator.** Defenders can test defensive interventions (e.g., isolating SMB port 445 or rate-limiting SYN bursts) *before* deployment. The model re-rolls the forecast trajectory under the intervention, mathematically demonstrating the risk collapse (e.g., from 89% down to 3%).
 
 <p align="center">
-  <img src="docs/images/whatif_simulator.png" alt="CyberCast AI Counterfactual What-If Proactive Defense Simulator" width="100%">
+  <img src="docs/images/whatif_real.png" alt="CyberCast AI Counterfactual What-If Proactive Defense Simulator" width="100%">
 </p>
 
-<sub>Counterfactual "What-If" Proactive Defense Simulator: simulating an intervention (severing SMB Port 445) collapses projected attack risk from 89% down to 3%, verified against the Pre-Deployment Safety Sandbox (AD, DNS, SCADA) before synthesizing eBPF/iptables rules.</sub>
+<sub>Live Digital Twin Defense Simulator: counterfactual intervention simulation (severing East-West SMB Port 445) collapsing projected attack risk before enforcement, verified against the Pre-Deployment Safety Sandbox (AD, DNS, SCADA) before synthesizing eBPF/iptables rules.</sub>
+
+* **Autonomous SOC AI Copilot & Threat Advisor.** Grounded directly in live 27-dimensional state vectors ($S_t$), forward rollout trajectories, and IP Proctor behavioral audits. Guarantees a dedicated **"💡 How It Can Be Better"** actionable optimization playbook in every response.
+
+<p align="center">
+  <img src="docs/images/copilot_real.png" alt="CyberCast AI Autonomous SOC AI Copilot Workspace" width="100%">
+</p>
+
+<sub>Autonomous SOC AI Copilot Workspace: telemetry-grounded AI advisor delivering actionable "💡 How It Can Be Better" playbooks, automated zero-trust rule generation, and multi-step kill chain lookahead.</sub>
 
 * **Dual-level feature fusion ($S_t \in \mathbb{R}^{27}$).** Jointly fuses 11 flow-level features (NetFlow/IPFIX inter-arrival times, byte ratios), 6 TCP flag distributions, and 10 deep packet header features (TTL variance, TCP window size, IP fragmentation, port-scan entropy, East-West pivot ratios).
-* **Autonomous SOC AI Copilot & Threat Advisor.** Grounded directly in live 27-dimensional state vectors ($S_t$), forward rollout trajectories, and IP Proctor behavioral audits. Guarantees a dedicated **"💡 How It Can Be Better"** actionable optimization playbook in every response.
 * **Arbitrary IP Traffic Proctor & Threat Predictor.** Test *any* target or source IP on-demand from ingested telemetry or live test traffic synthesis (5 threat profiles). Combines a heuristic behavioral audit (Proctor Score 0–100) with neural forward projection and IP-specific containment rules.
 * **Air-gap ready.** 100% offline with zero cloud API keys, foreign LLM queries, or CDN scripts. Built-in SQLite/PostgreSQL tamper-evident digital evidence vault with SHA-256 fingerprinting.
 * **Line-rate scaling at 100 Gbps.** Linux eBPF/XDP kernel-bypass probe (`cybercast_xdp.c`) aggregates telemetry inside the NIC driver ring buffer with zero memory copies, processing **14.2 Million packets/second (100 Gbps)** with 48ns latency and <2.5% CPU overhead.

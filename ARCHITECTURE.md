@@ -114,7 +114,7 @@ The World Model consists of three tightly coupled components:
 Traditional systems can only watch and classify. Because CyberCast AI learns transition dynamics, defenders can simulate an intervention $\tilde{A}_t$ (e.g. blocking SMB port 445 or rate-limiting SYN packets). The simulator reruns the forward rollout under the modified state, demonstrating mathematically how the intervention collapses the future attack probability back to the benign baseline (e.g., from 89% down to 3%).
 
 <p align="center">
-  <img src="docs/images/whatif_simulator.png" alt="CyberCast AI Counterfactual What-If Proactive Defense Simulator" width="100%">
+  <img src="docs/images/whatif_real.png" alt="CyberCast AI Counterfactual What-If Proactive Defense Simulator" width="100%">
 </p>
 
 
