@@ -402,8 +402,10 @@ function setupTabs() {
         } else if (targetId === 'counterfactual' && state.counterfactualResult) {
           CyberCharts.drawDualTrajectory('chart-whatif', state.counterfactualResult.baseline.timeline_seconds, state.counterfactualResult.baseline.infiltration_probabilities, state.counterfactualResult.intervened.infiltration_probabilities);
         } else if (targetId === 'ip_proctor' && state.testedIpResult) {
-          const r = state.testedIpResult.prediction.rollout;
-          CyberCharts.drawTrajectory('chart-ip-rollout', r.timeline_seconds, r.infiltration_probabilities, r.infiltration_uncertainty_lower, r.infiltration_uncertainty_upper);
+          const r = state.testedIpResult.neural_forecast ? state.testedIpResult.neural_forecast.rollout : (state.testedIpResult.prediction ? state.testedIpResult.prediction.rollout : null);
+          if (r) {
+            CyberCharts.drawTrajectory('chart-ip-rollout', r.timeline_seconds, r.infiltration_probabilities, r.infiltration_uncertainty_lower, r.infiltration_uncertainty_upper);
+          }
         }
       }, 50);
     });
@@ -1453,28 +1455,38 @@ async function executeCopilotChat(messageText) {
   if (ind2) ind2.style.display = 'flex';
   scrollCopilotToBottom();
 
-  // Gather live operational context
-  const activePreset = document.getElementById('active-source-display')?.textContent || 'CTU-13 Neris';
-  const targetIp = document.getElementById('proctor-target-ip')?.value || '10.0.1.99';
-  const curStageName = document.getElementById('metric-stage-name')?.textContent || 'Stage 0 - Benign Baseline';
-  const projStageName = document.getElementById('proj-stage-name')?.textContent || 'Stage 3 - Lateral Movement';
-  const threatRiskText = document.getElementById('badge-threat-risk')?.textContent || '50%';
-  const riskFloat = parseFloat(threatRiskText.replace(/[^0-9.]/g, '')) / 100 || 0.55;
-
-  const contextPayload = {
-    active_preset: activePreset,
-    target_ip: targetIp,
-    current_stage_name: curStageName,
-    projected_stage_name: projStageName,
-    current_risk: riskFloat,
-    future_risk: Math.min(0.95, riskFloat + 0.35),
-    time_to_compromise_sec: 42.0,
-    model_type: state.modelType ? state.modelType.toUpperCase() : 'TRANSFORMER',
-    proctor_score: state.testedIpResult ? state.testedIpResult.proctor.proctor_score : 85,
-    proctor_verdict: state.testedIpResult ? state.testedIpResult.proctor.proctor_verdict : 'CRITICAL_INTRUSION'
-  };
-
   try {
+    // Gather live operational context safely
+    const activePreset = document.getElementById('active-source-display')?.textContent || 'CTU-13 Neris';
+    const targetIp = document.getElementById('proctor-target-ip')?.value || '10.0.1.99';
+    const curStageName = document.getElementById('metric-stage-name')?.textContent || 'Stage 0 - Benign Baseline';
+    const projStageName = document.getElementById('proj-stage-name')?.textContent || 'Stage 3 - Lateral Movement';
+    const threatRiskText = document.getElementById('badge-threat-risk')?.textContent || '50%';
+    const riskFloat = parseFloat(threatRiskText.replace(/[^0-9.]/g, '')) / 100 || 0.55;
+
+    let proctorScore = 85;
+    let proctorVerdict = 'CRITICAL_INTRUSION';
+    if (state.testedIpResult) {
+      const p = state.testedIpResult.proctor_evaluation || state.testedIpResult.proctor;
+      if (p) {
+        proctorScore = p.proctor_score !== undefined ? p.proctor_score : 85;
+        proctorVerdict = p.proctor_verdict || 'CRITICAL_INTRUSION';
+      }
+    }
+
+    const contextPayload = {
+      active_preset: activePreset,
+      target_ip: targetIp,
+      current_stage_name: curStageName,
+      projected_stage_name: projStageName,
+      current_risk: riskFloat,
+      future_risk: Math.min(0.95, riskFloat + 0.35),
+      time_to_compromise_sec: 42.0,
+      model_type: state.modelType ? state.modelType.toUpperCase() : 'TRANSFORMER',
+      proctor_score: proctorScore,
+      proctor_verdict: proctorVerdict
+    };
+
     const res = await api.post('/api/v1/copilot/chat', {
       message: q,
       context: contextPayload
@@ -1487,7 +1499,7 @@ async function executeCopilotChat(messageText) {
     let responseHtml = `
       <div class="copilot-msg-title">${escapeHtml(res.headline || '🤖 SOC Threat Advisory')}</div>
       <div style="font-size: 12px; line-height: 1.6; color: #cbd5e1; margin-bottom: 8px;">
-        ${formatMarkdown(res.analysis || res.response)}
+        ${formatMarkdown(res.analysis || res.response || 'Threat state analyzed.')}
       </div>
     `;
 
@@ -1530,6 +1542,7 @@ function sendCopilotMessage() {
   const input = document.getElementById('copilot-chat-input');
   if (!input) return;
   const val = input.value;
+  if (!val || !val.trim()) return;
   input.value = '';
   executeCopilotChat(val);
 }
@@ -1538,6 +1551,7 @@ function sendMainCopilotMessage() {
   const input = document.getElementById('copilot-main-input');
   if (!input) return;
   const val = input.value;
+  if (!val || !val.trim()) return;
   input.value = '';
   executeCopilotChat(val);
 }
