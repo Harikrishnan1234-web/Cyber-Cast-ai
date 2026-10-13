@@ -3,34 +3,13 @@
   "version": 2,
   "functions": {
     "api/index.py": {
-      "maxDuration": 30,
-      "includeFiles": "static/**"
+      "maxDuration": 30
     }
   },
   "rewrites": [
     {
       "source": "/",
       "destination": "/static/index.html"
-    },
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/index.py"
-    },
-    {
-      "source": "/docs",
-      "destination": "/api/index.py"
-    },
-    {
-      "source": "/redoc",
-      "destination": "/api/index.py"
-    },
-    {
-      "source": "/openapi.json",
-      "destination": "/api/index.py"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/api/index.py"
     }
   ]
 }

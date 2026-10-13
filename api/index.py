@@ -23,4 +23,25 @@ if os.environ.get("VERCEL") or os.environ.get("AWS_LAMBDA_FUNCTION_NAME"):
             pass
     os.environ["CYBERCAST_DB_PATH"] = tmp_db
 
-from app import app
+from app import app as fastapi_app
+
+
+class VercelAsgiAdapter:
+    """
+    ASGI Adapter to normalize request paths when running on Vercel serverless functions.
+    Handles direct /api/... calls, stripped /v1/... paths, and /api index queries.
+    """
+    def __init__(self, inner_app):
+        self.inner_app = inner_app
+
+    async def __call__(self, scope, receive, send):
+        if scope.get("type") == "http":
+            path = scope.get("path", "")
+            if path.startswith("/v1/"):
+                scope["path"] = "/api" + path
+            elif path in ("/api", "/api/", "/"):
+                scope["path"] = "/api/v1/health"
+        await self.inner_app(scope, receive, send)
+
+
+app = VercelAsgiAdapter(fastapi_app)
