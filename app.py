@@ -758,6 +758,13 @@ def copilot_chat(req: CopilotChatRequest):
                 ctx.setdefault("current_risk", float(rollout["infiltration_probabilities"][0]))
                 ctx.setdefault("future_risk", float(rollout["infiltration_probabilities"][-1]))
                 ctx.setdefault("time_to_compromise_sec", rollout.get("time_to_compromise_sec", 42.0))
+                if active_states_df is not None and not active_states_df.empty:
+                    last_row = active_states_df.iloc[-1]
+                    ctx.setdefault("live_syn_ratio", float(last_row.get("flag_syn_ratio", 0.88)))
+                    ctx.setdefault("live_port_entropy", float(last_row.get("port_scan_entropy", 0.82)))
+                    ctx.setdefault("live_east_west_ratio", float(last_row.get("east_west_traffic_ratio", 0.74)))
+                    ctx.setdefault("live_flow_count", int(last_row.get("flow_count", 48)))
+                    ctx.setdefault("live_total_bytes", int(last_row.get("total_bytes", 145000)))
         except Exception:
             pass
 
